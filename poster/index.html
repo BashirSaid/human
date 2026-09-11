@@ -1,0 +1,621 @@
+<title>بشير سعيد · مُركِّز الحوسبة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&family=Noto+Sans+Hebrew:wght@400;500;700&display=swap">
+
+<style>
+/* ============================================================
+   لوحة مُركِّز الحوسبة — المدرسة الإعداديّة فيّاض أسدي، دير الأسد
+   Palette lifted from the school seal: laurel gold, swirl blue,
+   parchment ground — set on ink navy. Single visual world by
+   intent (a printed sheet), every colour painted explicitly.
+   ============================================================ */
+:root{
+  --ink:#0A1826;
+  --ink-deep:#060F1B;
+  --ink-raise:#102539;
+  --gold:#C39A45;
+  --gold-lift:#E9CE8C;
+  --gold-deep:#8A6A2B;
+  --teal:#4E93B4;
+  --teal-lift:#8FCFE2;
+  --parchment:#F2E9D9;
+  --muted:#8FA4BA;
+  --rule:rgba(195,154,69,.34);
+
+  --display:"Reem Kufi","Noto Kufi Arabic",system-ui,sans-serif;
+  --body:"IBM Plex Sans Arabic","Noto Sans Arabic",system-ui,sans-serif;
+  --hebrew:"Noto Sans Hebrew","IBM Plex Sans Arabic",system-ui,sans-serif;
+}
+
+*{box-sizing:border-box}
+
+body{
+  background:
+    radial-gradient(120% 80% at 50% -10%, #12283E 0%, rgba(18,40,62,0) 62%),
+    var(--ink-deep);
+  color:var(--parchment);
+  font-family:var(--body);
+  margin:0;
+  padding-block:clamp(18px,4vw,48px);
+  padding-left:16px;
+  padding-right:16px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:clamp(14px,2.4vw,24px);
+  min-height:100vh;
+}
+
+/* ---------- the sheet ---------- */
+.poster{
+  position:relative;
+  width:min(100%,880px);
+  aspect-ratio:1000/1414;
+  container-type:inline-size;
+  background:
+    radial-gradient(78% 46% at 74% 21%, rgba(78,147,180,.16) 0%, rgba(78,147,180,0) 62%),
+    radial-gradient(60% 38% at 16% 82%, rgba(195,154,69,.11) 0%, rgba(195,154,69,0) 66%),
+    linear-gradient(178deg, #0C1C2C 0%, var(--ink) 46%, #071322 100%);
+  overflow:hidden;
+  box-shadow:0 2.2cqw 6cqw rgba(0,0,0,.55), 0 0 0 1px rgba(195,154,69,.22);
+  direction:rtl;
+}
+
+.lattice{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  pointer-events:none;
+}
+
+/* inner gold rule, like a plate border */
+.frame{
+  position:absolute;
+  inset:2.4cqw;
+  border:1px solid rgba(195,154,69,.30);
+  pointer-events:none;
+}
+.frame::before,.frame::after{
+  content:"";
+  position:absolute;
+  width:3.4cqw;height:3.4cqw;
+  border:1px solid var(--gold);
+}
+.frame::before{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.frame::after{bottom:-1px;left:-1px;border-right:0;border-top:0}
+
+.sheet{
+  position:relative;
+  height:100%;
+  padding:4.6cqw 5.4cqw 3.8cqw;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:2.4cqw;
+  padding-bottom:2.2cqw;
+  border-bottom:1px solid var(--rule);
+}
+.seal{
+  width:11.4cqw;
+  height:11.4cqw;
+  border-radius:50%;
+  display:block;
+  box-shadow:0 0 0 .28cqw rgba(233,206,140,.30), 0 .5cqw 1.6cqw rgba(0,0,0,.45);
+}
+.school{display:flex;flex-direction:column;gap:.5cqw;min-width:0}
+.school .ar{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:2.38cqw;
+  line-height:1.35;
+  color:var(--parchment);
+  letter-spacing:.01em;
+}
+.school .he{
+  font-family:var(--hebrew);
+  font-weight:400;
+  font-size:1.5cqw;
+  line-height:1.3;
+  color:var(--muted);
+  direction:rtl;
+}
+.motto{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.76cqw;
+  line-height:1;
+  color:var(--gold-lift);
+  border:1px solid var(--gold-deep);
+  padding:1.05cqw 1.5cqw;
+  white-space:nowrap;
+  background:rgba(195,154,69,.07);
+}
+
+/* ---------- hero ---------- */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 33cqw;
+  gap:3.4cqw;
+  align-items:end;
+  padding-top:2.6cqw;
+}
+
+.identity{display:flex;flex-direction:column;gap:1.5cqw;min-width:0}
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:1.1cqw;
+  font-size:1.44cqw;
+  font-weight:500;
+  letter-spacing:.16em;
+  color:var(--teal-lift);
+}
+.eyebrow::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(to left, rgba(143,207,226,.55), rgba(143,207,226,0));
+}
+.honorific{
+  font-family:var(--display);
+  font-size:2.5cqw;
+  font-weight:400;
+  color:var(--gold);
+  line-height:1;
+}
+.name{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:9.4cqw;
+  line-height:.98;
+  margin:0;
+  color:var(--parchment);
+  text-wrap:balance;
+  text-shadow:0 .3cqw 1.4cqw rgba(0,0,0,.4);
+}
+.role{
+  font-family:var(--display);
+  font-weight:500;
+  font-size:3.28cqw;
+  line-height:1.3;
+  color:var(--gold-lift);
+  margin:0;
+}
+.lede{
+  font-size:1.82cqw;
+  line-height:1.85;
+  font-weight:300;
+  color:#CBD8E6;
+  max-width:44cqw;
+  margin:0;
+  border-right:2px solid var(--gold);
+  padding-right:1.6cqw;
+}
+.lede b{font-weight:600;color:var(--parchment)}
+
+/* mihrab-arched portrait */
+.portrait{
+  position:relative;
+  aspect-ratio:5/6;
+  border-radius:16.5cqw 16.5cqw .6cqw .6cqw;
+  overflow:hidden;
+  box-shadow:0 0 0 1px rgba(195,154,69,.5), 0 1.4cqw 3.4cqw rgba(0,0,0,.55);
+  background:var(--ink-raise);
+}
+.portrait img{
+  width:100%;
+  height:100%;
+  max-width:100%;
+  object-fit:cover;
+  object-position:52% 20%;
+  display:block;
+}
+.portrait::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(7,19,34,.92) 0%, rgba(7,19,34,.30) 22%, rgba(7,19,34,0) 48%);
+}
+
+/* ---------- domains strip ---------- */
+.domains{
+  margin-top:2.4cqw;
+  padding:1.35cqw 0;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:.8cqw 1.4cqw;
+  font-size:1.46cqw;
+  font-weight:500;
+  letter-spacing:.03em;
+  color:#B7C6D6;
+}
+.domains span{display:flex;align-items:center;gap:.9cqw;white-space:nowrap}
+.domains span::before{
+  content:"";
+  width:.52cqw;height:.52cqw;
+  background:var(--teal);
+  transform:rotate(45deg);
+  flex:none;
+}
+
+/* ---------- the two visions ---------- */
+.visions{
+  flex:1;
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  gap:0 3.2cqw;
+  padding-top:2.4cqw;
+  min-height:0;
+}
+.divider{background:linear-gradient(to bottom, rgba(195,154,69,0), var(--rule) 14%, var(--rule) 86%, rgba(195,154,69,0))}
+
+.vision{display:flex;flex-direction:column;gap:1.6cqw;min-width:0}
+.vision-head{display:flex;flex-direction:column;gap:.55cqw}
+.vision-head .kicker{
+  font-size:1.32cqw;
+  font-weight:500;
+  letter-spacing:.2em;
+  color:var(--teal-lift);
+}
+.vision-head h2{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:3.5cqw;
+  line-height:1.14;
+  margin:0;
+  color:var(--gold-lift);
+}
+.pillars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+  flex:1;justify-content:space-between;gap:1.45cqw}
+.pillars li{display:grid;grid-template-columns:1.5cqw 1fr;gap:1.25cqw;align-items:start}
+.pillars li::before{
+  content:"";
+  width:1.5cqw;height:1.5cqw;
+  margin-top:.72cqw;
+  border:1px solid var(--gold);
+  border-left-color:transparent;
+  border-bottom-color:transparent;
+}
+.pillars h3{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:2.2cqw;
+  line-height:1.4;
+  margin:0 0 .32cqw;
+  color:var(--parchment);
+}
+.pillars p{
+  font-size:1.58cqw;
+  line-height:1.8;
+  font-weight:300;
+  margin:0;
+  color:#A9BCCE;
+}
+
+/* ---------- manifesto ---------- */
+.manifesto{
+  margin-top:2.2cqw;
+  padding:2.5cqw 2.9cqw;
+  background:linear-gradient(100deg, rgba(16,37,57,.94), rgba(10,24,38,.72));
+  border-right:.42cqw solid var(--gold);
+  display:flex;
+  flex-direction:column;
+  gap:1.1cqw;
+}
+.manifesto blockquote{
+  font-family:var(--display);
+  font-weight:500;
+  font-size:2.72cqw;
+  line-height:1.52;
+  margin:0;
+  color:var(--parchment);
+  text-wrap:balance;
+}
+.manifesto blockquote em{font-style:normal;color:var(--gold-lift)}
+.attrib{
+  display:flex;
+  align-items:center;
+  gap:1.1cqw;
+  font-size:1.46cqw;
+  font-weight:500;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+.attrib::before{content:"";width:3.4cqw;height:1px;background:var(--gold);flex:none}
+
+/* ---------- colophon ---------- */
+.colophon{
+  margin-top:auto;
+  padding-top:1.8cqw;
+  border-top:1px solid var(--rule);
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:2cqw;
+  flex-wrap:wrap;
+  font-size:1.38cqw;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+.colophon .bilingual{display:flex;align-items:baseline;gap:1.1cqw;color:var(--gold-lift);font-weight:500}
+.colophon .bilingual .he{font-family:var(--hebrew);color:var(--muted);font-weight:400}
+.colophon .origin{font-variant-numeric:tabular-nums}
+.colophon .origin b{color:var(--teal-lift);font-weight:700;font-size:1.12em}
+
+/* ---------- print / download control (screen only) ---------- */
+.actions{
+  width:min(100%,880px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  direction:rtl;
+}
+.note{
+  font-size:13px;
+  line-height:1.7;
+  color:#7E93A8;
+  font-weight:300;
+  max-width:58ch;
+}
+.print-btn{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:600;
+  color:var(--ink-deep);
+  background:linear-gradient(180deg,var(--gold-lift),var(--gold));
+  border:0;
+  padding:11px 22px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.print-btn:hover{background:var(--gold-lift)}
+.print-btn:focus-visible{outline:2px solid var(--teal-lift);outline-offset:3px}
+
+@media (max-width:560px){
+  .note{font-size:12px}
+  .print-btn{width:100%}
+  .actions{justify-content:center}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* ---------- print: one edge-to-edge A3 sheet ---------- */
+@page{size:A3 portrait;margin:0}
+@media print{
+  body{padding:0;gap:0;background:#fff;display:block}
+  .actions{display:none}
+  .poster{
+    width:100%;
+    max-width:none;
+    aspect-ratio:1000/1414;
+    box-shadow:none;
+    break-inside:avoid;
+  }
+}
+</style>
+
+<div class="poster" id="poster">
+  <canvas class="lattice" id="lattice" aria-hidden="true"></canvas>
+  <div class="frame" aria-hidden="true"></div>
+
+  <div class="sheet">
+
+    <header class="masthead">
+      <img class="seal" src="assets/seal.png" alt="شعار المدرسة الإعداديّة فيّاض أسدي – دير الأسد">
+      <div class="school">
+        <div class="ar">المدرسة الإعداديّة «فيّاض أسدي» — دير الأسد</div>
+        <div class="he">חטיבת הביניים פיאד אסדי — דיר אל־אסד</div>
+      </div>
+      <div class="motto">الإنسان أوّلًا</div>
+    </header>
+
+    <section class="hero">
+      <div class="identity">
+        <div class="eyebrow">رؤية تعليميّة واجتماعيّة</div>
+        <div class="honorific">الأستاذ</div>
+        <h1 class="name">بشير سعيد</h1>
+        <p class="role">مُركِّز الحوسبة والتعلُّم الرقميّ</p>
+        <p class="lede">حوسبةٌ تبني الطالب ولا تستبدله: <b>الإنسان قبل الآلة</b>، والسؤال قبل الإجابة، والمعنى قبل الأداة.</p>
+      </div>
+      <figure class="portrait">
+        <img src="assets/portrait.jpg" alt="الأستاذ بشير سعيد، مُركِّز الحوسبة في المدرسة الإعداديّة فيّاض أسدي">
+      </figure>
+    </section>
+
+    <div class="domains">
+      <span>التفكير الحاسوبيّ</span>
+      <span>الروبوتيك</span>
+      <span>تطوير الويب</span>
+      <span>الذكاء الاصطناعيّ</span>
+      <span>الأمان الرقميّ</span>
+      <span>المواطنة الرقميّة</span>
+    </div>
+
+    <section class="visions">
+      <div class="vision">
+        <div class="vision-head">
+          <div class="kicker">داخل الصفّ</div>
+          <h2>الرؤية التعليميّة</h2>
+        </div>
+        <ul class="pillars">
+          <li>
+            <div>
+              <h3>التفكير قبل اللغة</h3>
+              <p>نُدرّب الطالب على تفكيك المشكلة وبناء الخوارزميّة خطوةً خطوة؛ فاللغات تتبدّل كلّ بضع سنوات، والتفكير يبقى.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>تعلُّمٌ بالمشاريع</h3>
+              <p>كلّ فصلٍ دراسيٍّ يُختَم بمُنتَجٍ رقميٍّ يحمل اسم صاحبه: موقعٌ، أو تطبيقٌ، أو روبوتٌ يعمل.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>ذكاءٌ اصطناعيٌّ بمسؤوليّة</h3>
+              <p>نستعمله شريكًا في التعلّم لا بديلًا عنه، ونُعلّم الطالب أن يسأل ويتحقّق بدل أن ينسخ.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>المعلّم أوّلًا أيضًا</h3>
+              <p>مرافقةٌ يوميّة للطاقم التدريسيّ حتّى تصير التكنولوجيا يدًا ممدودة، لا عبئًا إضافيًّا على المعلّم.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <div class="vision">
+        <div class="vision-head">
+          <div class="kicker">خارج الصفّ</div>
+          <h2>الرؤية الاجتماعيّة</h2>
+        </div>
+        <ul class="pillars">
+          <li>
+            <div>
+              <h3>لا طالبَ خارج الشبكة</h3>
+              <p>سدُّ الفجوة الرقميّة بالأجهزة والاتّصال والمرافقة الشخصيّة، فالفرصة الرقميّة حقٌّ لا امتياز.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>مواطنةٌ رقميّةٌ وأمان</h3>
+              <p>خصوصيّةٌ محميّة، ومواجهةٌ صريحة للتنمّر الإلكترونيّ، واحترامٌ للإنسان الذي خلف الشاشة.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>سفراء الحوسبة</h3>
+              <p>طلّابٌ يُعلّمون طلّابًا، ويحملون ما تعلّموه من الصفّ إلى البيت وإلى أبناء الحيّ.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>المدرسة في قلب البلد</h3>
+              <p>ورشاتٌ لأولياء الأمور، ومشاريع رقميّة يصنعها الطلّاب لخدمة أهالي دير الأسد.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <blockquote>من <em>الخوارزميّ</em> إلى <em>الخوارزميّة</em>: نُعلّم أبناءنا أن يكتبوا الشيفرة، ونُعلّمهم أوّلًا لماذا يكتبونها.</blockquote>
+      <div class="attrib">بشير سعيد — مُركِّز الحوسبة</div>
+    </section>
+
+    <footer class="colophon">
+      <div class="bilingual">
+        <span>الإنسان أوّلًا</span>
+        <span class="he">האדם קודם כול</span>
+      </div>
+      <div class="origin">من الأرقام العربيّة <b>٠</b> و<b>١</b> إلى النظام الثنائيّ</div>
+    </footer>
+
+  </div>
+</div>
+
+<div class="actions">
+  <p class="note">نصّ الرؤية مكتوبٌ كمسوّدة جاهزة للتعديل — بدّل أيّ بندٍ بكلماتك. اللوحة مُعدّة للطباعة على مقاس A3 عموديّ.</p>
+  <button class="print-btn" id="printBtn" type="button">طباعة / حفظ PDF</button>
+</div>
+
+<script>
+/* Faint field of ٠ and ١ — Arabic-Indic binary — with a few circuit traces.
+   Seeded so the sheet renders identically every time it is printed. */
+(function () {
+  var cv = document.getElementById('lattice');
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+
+  function rng(seed) {
+    return function () {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed / 4294967296;
+    };
+  }
+
+  function draw() {
+    var host = cv.parentElement;
+    var w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 3);
+    cv.width = Math.round(w * dpr);
+    cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    var r = rng(20260911);
+    var step = w / 26;
+    var size = step * 0.44;
+    ctx.font = '500 ' + size.toFixed(2) + 'px "IBM Plex Sans Arabic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (var y = step * 0.5; y < h; y += step) {
+      for (var x = step * 0.5; x < w; x += step) {
+        var v = r();
+        if (v < 0.30) continue;
+        /* brighter toward the upper band, where the hero sits */
+        var depth = 1 - Math.min(1, y / h);
+        var a = 0.038 + depth * 0.072 + r() * 0.026;
+        ctx.fillStyle = v > 0.80
+          ? 'rgba(143,207,226,' + (a * 1.5).toFixed(3) + ')'
+          : 'rgba(233,206,140,' + a.toFixed(3) + ')';
+        ctx.fillText(v > 0.55 ? '١' : '٠', x, y);
+      }
+    }
+
+    /* circuit traces: orthogonal runs with a 45° elbow, ending in a node */
+    ctx.lineCap = 'square';
+    for (var i = 0; i < 9; i++) {
+      var sx = Math.round(r() * 26) * step + step * 0.5;
+      var sy = Math.round(r() * (h / step)) * step + step * 0.5;
+      var run = (2 + Math.floor(r() * 5)) * step;
+      var dir = r() > 0.5 ? 1 : -1;
+      ctx.beginPath();
+      ctx.moveTo(sx, sy);
+      ctx.lineTo(sx + run * dir, sy);
+      ctx.lineTo(sx + run * dir + step * dir, sy + step);
+      ctx.lineTo(sx + run * dir + step * dir, sy + step + run * 0.6);
+      ctx.strokeStyle = i % 3 === 0 ? 'rgba(143,207,226,.10)' : 'rgba(195,154,69,.085)';
+      ctx.lineWidth = Math.max(1, w * 0.0011);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(sx, sy, Math.max(1.4, w * 0.0022), 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(233,206,140,.16)';
+      ctx.fill();
+    }
+  }
+
+  draw();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  var t;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(draw, 120);
+  });
+  window.addEventListener('beforeprint', draw);
+
+  var btn = document.getElementById('printBtn');
+  if (btn) btn.addEventListener('click', function () { window.print(); });
+})();
+</script>
